@@ -1,5 +1,6 @@
 ## AutoSegmenter
-Reading the date on the label on a cardboard box using API integrated HALCON AutoSegmenter.
+Reading the date on the label on a cardboard box using API integrated
+HALCON AutoSegmenter.
 ### Description
 HALCON AutoSegmenter provides an easy and robust way to read text with few input
 parameters. All known text characteristics can be entered as parameters,
