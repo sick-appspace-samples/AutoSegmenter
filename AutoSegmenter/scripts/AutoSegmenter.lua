@@ -5,15 +5,13 @@ print('AppEngine Version: ' .. Engine.getVersion())
 local DELAY = 150
 
 -- Creating viewer
-local viewer = View.create('viewer2D1')
+local viewer = View.create()
 
 -- Setting up graphical overlay attributes
 local decoration = View.ShapeDecoration.create()
-decoration:setLineColor(0, 255, 0)
-decoration:setLineWidth(3)
+decoration:setLineColor(0, 255, 0):setLineWidth(3)
 
-local charDeco = View.TextDecoration.create()
-charDeco:setSize(40)
+local charDeco = View.TextDecoration.create():setSize(40)
 
 -- Creating and setup an OCR segmenter
 local segmenter = Image.OCR.Halcon.AutoSegmenter.create()
@@ -34,7 +32,7 @@ local function main()
   -- Load image and present
   local img = Image.load('resources/AutoSegmenter.bmp')
   viewer:clear()
-  local imageID = viewer:addImage(img)
+  viewer:addImage(img)
   viewer:present()
   Script.sleep(DELAY * 5) -- for demonstration purpose only
 
@@ -46,13 +44,13 @@ local function main()
   local characters, _, _ = fontClassifier:classifyCharacters(charRegions, img, "[0-9]{6}")
 
   -- Draw bounding boxes and print classified characters
+  local boxes = charRegions:getBoundingBox()
+  viewer:addShape(boxes, decoration)
+  viewer:present("ASSURED")
+  local CoG = boxes:getCenterOfGravity()
   for i = 1, #characters do
-    local box = charRegions[i]:getBoundingBox()
-    viewer:addShape(box, decoration, nil, imageID)
-    viewer:present()
-    local CoG = box:getCenterOfGravity()
-    charDeco:setPosition(CoG:getX() - 10, CoG:getY() + 65)
-    viewer:addText(characters:sub(i, i), charDeco, nil, imageID)
+    charDeco:setPosition(CoG[i]:getX() - 10, CoG[i]:getY() + 65)
+    viewer:addText(characters:sub(i, i), charDeco)
     viewer:present() -- can be put outside loop if not for demonstration
     Script.sleep(DELAY) -- for demonstration purpose only
   end

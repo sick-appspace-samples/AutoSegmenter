@@ -1,13 +1,20 @@
 ## AutoSegmenter
+
 Reading the date on the label on a cardboard box using API integrated
 HALCON AutoSegmenter.
 
 ### Description
+
+Disclaimer: this sample will run only on physical AppSpace enabled device such as
+InspectorP or SIM or with Software AppEngine when a valid HALCON license is
+installed and available.
+
 HALCON AutoSegmenter provides an easy and robust way to read text with few input
 parameters. All known text characteristics can be entered as parameters,
 in this case "min stroke width" and "text line structure".
 
 ### How to Run
+
 Starting this sample is possible either by running the app (F5) or
 debugging (F7+F10). Setting breakpoint on the first row inside the 'main'
 function allows debugging step-by-step after 'Engine.OnStarted' event.
@@ -19,7 +26,9 @@ Alternatively the Emulator in AppStudio 2.3 or higher can be used in conjunction
 with a HALCON developer license and dongle.
 
 ### More Information
+
 Tutorial "Algorithms - OCR"
 
 ### Topics
-Algorithm, Image-2D, OCR, Sample, SICK-AppSpace
+
+algorithm, image-2d, ocr, sample, sick-appspace, halcon
